@@ -50,10 +50,10 @@ fn main() {
     let mut message = String::new();
     match matches.value_of("message") {
         None => {
-            println!("Message: ");
             io::stdin()
                 .read_line(&mut message)
                 .expect("Error reading message");
+            message = message.trim().to_string();
         }
         Some(msg) => message = msg.to_string(),
     }
@@ -64,12 +64,7 @@ fn main() {
         Some(tagparams) => {
             tag_string = tagparams.to_string();
         }
-        None => {
-            println!("Tags: ");
-            io::stdin()
-                .read_line(&mut tag_string)
-                .expect("Error reading tags");
-        }
+        _ => (),
     };
 
     tags = tag_string

@@ -4,28 +4,13 @@ use std::io;
 use std::io::prelude::*;
 use std::path::PathBuf;
 
-extern crate clap;
 use clap::{App, Arg};
-extern crate uuid;
-use uuid::Uuid;
+use serde_json::json;
 
-#[macro_use]
-extern crate serde_json;
-#[macro_use]
-extern crate serde_derive;
-
-extern crate chrono;
-use chrono::prelude::*;
-
-extern crate dirs;
-
-#[derive(Serialize, Deserialize)]
-pub struct Odot {
-    message: String,
-    tags: Vec<String>,
-    timestamp: DateTime<Utc>,
-    uuid: Uuid,
-}
+mod message;
+mod odot;
+mod tags;
+use odot::*;
 
 fn main() {
     let matches = App::new("odot")
@@ -71,14 +56,7 @@ fn main() {
         .map(|tag| tag.trim().to_string())
         .collect();
 
-    let timestamp: DateTime<Utc> = Utc::now();
-    let uuid = Uuid::new_v4();
-    let odot = Odot {
-        message,
-        tags,
-        timestamp,
-        uuid,
-    };
+    let odot = Odot::new(message, tags);
 
     let data = json!(odot);
 
@@ -89,7 +67,7 @@ fn main() {
     }
 
     let mut filepath = PathBuf::from(data_dir.as_path());
-    filepath.push(format!("{}.json", uuid));
+    filepath.push(format!("{}.json", odot.get_uuid()));
     let mut file = File::create(filepath).expect("Error creating a file");
     write!(file, "{}", data).expect("Error writing data to the file");
 }

@@ -1,6 +1,6 @@
 [package]
 name = "odot"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Veeti Haapsamo <veeti.haapsamo@gmail.com>"]
 edition = "2018"
 description = "Reverse todo: Write down things that you've done."
@@ -14,9 +14,9 @@ codecov = { repository = "Walther/odot", branch = "master", service = "github" }
 
 [dependencies]
 chrono = { version = "0.4", features = ["serde"] }
-clap = "~2.32"
+clap = "2.32"
 dirs = "1.0"
-serde = "1.0.80"
-serde_derive = "1.0.80"
-serde_json = "1.0.33"
+serde = "1.0.85"
+serde_derive = "1.0.85"
+serde_json = "1.0.37"
 uuid = { version = "0.7.1", features = ["v4", "serde"] }

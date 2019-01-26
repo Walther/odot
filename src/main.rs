@@ -72,13 +72,13 @@ fn main() {
         .map(|tag| tag.trim().to_string())
         .collect();
 
-    let now: DateTime<Utc> = Utc::now();
+    let timestamp: DateTime<Utc> = Utc::now();
     let uuid = Uuid::new_v4();
     let odot = Odot {
-        message: message,
-        tags: tags,
-        timestamp: now,
-        uuid: uuid,
+        message,
+        tags,
+        timestamp,
+        uuid,
     };
 
     let data = json!(odot);

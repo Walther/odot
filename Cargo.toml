@@ -3,6 +3,9 @@ name = "odot"
 version = "0.1.0"
 authors = ["Veeti Haapsamo <veeti.haapsamo@gmail.com>"]
 edition = "2018"
+description = "Reverse todo: Write down things that you've done."
+repository = "https://github.com/Walther/odot"
+license = "MIT"
 
 [dependencies]
 chrono = { version = "0.4", features = ["serde"] }

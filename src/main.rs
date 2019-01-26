@@ -38,14 +38,16 @@ fn main() {
                 .value_name("MESSAGE")
                 .help("Sets the odot message")
                 .takes_value(true),
-        ).arg(
+        )
+        .arg(
             Arg::with_name("tags")
                 .short("t")
                 .long("tags")
                 .value_name("TAGS")
                 .help("Sets the odot tags")
                 .takes_value(true),
-        ).get_matches();
+        )
+        .get_matches();
 
     let mut message = String::new();
     match matches.value_of("message") {
@@ -60,15 +62,12 @@ fn main() {
 
     let mut tag_string = String::new();
     let tags: Vec<String>;
-    match matches.value_of("tags") {
-        Some(tagparams) => {
-            tag_string = tagparams.to_string();
-        }
-        _ => (),
+    if let Some(tagparams) = matches.value_of("tags") {
+        tag_string = tagparams.to_string();
     };
 
     tags = tag_string
-        .split(",")
+        .split(',')
         .map(|tag| tag.trim().to_string())
         .collect();
 

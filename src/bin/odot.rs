@@ -7,10 +7,7 @@ use std::path::PathBuf;
 use clap::{App, Arg};
 use serde_json::json;
 
-mod message;
-mod odot;
-mod tags;
-use odot::*;
+use odot::odot::Odot;
 
 fn main() {
     let matches = App::new("odot")

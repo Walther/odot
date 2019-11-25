@@ -14,7 +14,7 @@ codecov = { repository = "Walther/odot", branch = "master", service = "github" }
 
 [dependencies]
 chrono = { version = "0.4", features = ["serde"] }
-clap = "2.32"
+clap = "2.33"
 dirs = "1.0"
 serde = "1.0.89"
 serde_derive = "1.0.89"
